@@ -18,10 +18,6 @@ let package = Package(
     ],
     targets: [
         .target(name: "KitoPaywall", dependencies: [.product(name: "KitoCore", package: "KitoCore")]),
-        .testTarget(
-            name: "KitoPaywallTests",
-            dependencies: ["KitoPaywall"],
-            resources: [.copy("KitoPaywallTests.storekit")]
-        ),
+        .testTarget(name: "KitoPaywallTests", dependencies: ["KitoPaywall"]),
     ]
 )
