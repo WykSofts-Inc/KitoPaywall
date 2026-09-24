@@ -96,6 +96,14 @@ struct KitoAurora: View {
         ]
     }
 
+    /// Where orb `index` drifts to at `time`; split out so the compiler checks it quickly.
+    private static func orbOffset(index: Int, time t: Double, in size: CGSize) -> CGSize {
+        let i = Double(index)
+        let x: Double = cos(t * (0.3 + i * 0.07) + i * 2) * Double(size.width) * 0.3
+        let y: Double = sin(t * (0.25 + i * 0.05) + i) * Double(size.height) * 0.25
+        return CGSize(width: x, height: y)
+    }
+
     private func orbs(time t: Double) -> some View {
         GeometryReader { proxy in
             let size = proxy.size
@@ -103,14 +111,10 @@ struct KitoAurora: View {
             ZStack {
                 p[0]
                 ForEach(0..<3, id: \.self) { index in
-                    let i = Double(index)
                     Circle()
                         .fill(p[index + 1])
                         .frame(width: size.width * 0.9, height: size.width * 0.9)
-                        .offset(
-                            x: cos(t * (0.3 + i * 0.07) + i * 2) * size.width * 0.3,
-                            y: sin(t * (0.25 + i * 0.05) + i) * size.height * 0.25
-                        )
+                        .offset(Self.orbOffset(index: index, time: t, in: size))
                         .blur(radius: 60)
                 }
             }
