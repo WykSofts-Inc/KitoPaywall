@@ -1,5 +1,7 @@
 # KitoPaywall
 
+**[Documentation](https://wyksofts-inc.github.io/KitoPaywall/documentation/kitopaywall/)**
+
 StoreKit 2 paywalls for SwiftUI: six layouts, three plan pickers, a shimmering purchase button,
 restore and legal links, a close button that fades in, and confetti when the purchase goes through.
 `KitoStore` handles products, purchases, restores, `Transaction.updates` and entitlements. Part of
